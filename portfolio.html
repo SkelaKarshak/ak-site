@@ -157,10 +157,90 @@
         .back-btn:hover::after {
             width: 80%;
         }
+
+        /* Rotation Overlay */
+        .rotation-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 9999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .rotation-overlay svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 2rem;
+            animation: rotatePhone 2.5s ease-in-out infinite;
+        }
+
+        .rotation-overlay h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .rotation-overlay p {
+            font-size: 14px;
+            opacity: 0.8;
+            max-width: 280px;
+            line-height: 1.5;
+        }
+
+        @keyframes rotatePhone {
+            0%, 10% {
+                transform: rotate(0deg);
+            }
+            40%, 60% {
+                transform: rotate(-90deg);
+            }
+            90%, 100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .back-btn {
+                font-size: 16px;
+            }
+            .dot-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) and (orientation: portrait) {
+            .rotation-overlay {
+                display: flex;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="rotation-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" stroke="white" stroke-width="1.5"/>
+            <circle cx="12" cy="19" r="0.75" fill="white"/>
+            <path d="M16 8a5 5 0 0 1 2 4M8 16a5 5 0 0 1-2-4" stroke="#00A3FF" stroke-width="1.5"/>
+        </svg>
+        <h2>Rotate your device</h2>
+        <p>Please rotate your device to landscape for the best portfolio experience.</p>
+    </div>
+
     <div class="slide-container" id="slideContainer">
         <section class="slide" id="slide-2">
             <div class="slide-content">
