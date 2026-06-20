@@ -208,6 +208,42 @@
             line-height: 1.5;
         }
 
+        .rotation-skip-btn {
+            margin-top: 2rem;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .rotation-skip-btn:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .rotation-skip-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: width 0.3s ease;
+        }
+
+        .rotation-skip-btn:hover::after {
+            width: 80%;
+        }
+
         @keyframes rotatePhone {
             0%, 10% {
                 transform: rotate(0deg);
@@ -270,6 +306,7 @@
         </svg>
         <h2>Rotate your device</h2>
         <p>Please rotate your device to landscape for the best portfolio experience.</p>
+        <button class="rotation-skip-btn" id="rotationSkipBtn">Continue in portrait</button>
     </div>
 
     <div class="slide-container" id="slideContainer">
@@ -869,6 +906,33 @@
         </ul>
     </nav>
     <script src="script.js"></script>
+    <script>
+        (function () {
+            var overlay = document.querySelector('.rotation-overlay');
+            var skipBtn = document.getElementById('rotationSkipBtn');
+            var dismissed = false;
+
+            skipBtn.addEventListener('click', function () {
+                dismissed = true;
+                overlay.style.display = 'none';
+            });
+
+            // Re-check on orientation change: only show overlay if not dismissed
+            window.addEventListener('orientationchange', function () {
+                if (dismissed) return;
+                // Small delay so the browser has time to update orientation
+                setTimeout(function () {
+                    var isPortrait = window.matchMedia('(orientation: portrait)').matches;
+                    var isMobile = window.matchMedia('(max-width: 1024px)').matches;
+                    if (isMobile && isPortrait) {
+                        overlay.style.display = 'flex';
+                    } else {
+                        overlay.style.display = 'none';
+                    }
+                }, 150);
+            });
+        })();
+    </script>
 </body>
 
 </html>
