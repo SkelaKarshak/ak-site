@@ -228,28 +228,26 @@
                 display: none;
             }
 
-            /* On mobile, place info boxes just below the image area (black bar starts ~72%) */
+            /* On mobile, anchor info boxes to very bottom of slide, compact style */
             .slide-project-info {
-                top: 73% !important;
-                bottom: auto !important;
+                top: auto !important;
+                bottom: 3% !important;
                 pointer-events: auto !important;
             }
 
-            /* Scale up year and title to be readable on mobile */
+            /* Hide the long description text on mobile — too small to read */
+            .slide-project-info > div:last-child {
+                display: none !important;
+            }
+
+            /* Scale up year, title, and play icon for mobile tap targets */
             .slide-project-info > div[style*="font-size:1.2vw"] {
-                font-size: 2.5vw !important;
+                font-size: 3vw !important;
             }
-
-            /* Scale description text up too */
-            .slide-project-info > div[style*="font-size:0.85vw"] {
-                font-size: 1.8vw !important;
-                line-height: 1.4 !important;
-            }
-
             .slide-project-info .play-icon {
-                width: 2.5vw !important;
-                height: 2.5vw !important;
-                margin-bottom: 0.3vw !important;
+                width: 3vw !important;
+                height: 3vw !important;
+                margin-bottom: 0.5vw !important;
             }
         }
 
