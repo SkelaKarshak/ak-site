@@ -3,16 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <script>
-        // Fix iOS Safari 100vh including browser chrome by using window.innerHeight
-        function setRealVh() {
-            document.documentElement.style.setProperty('--real-vh', window.innerHeight * 0.01 + 'px');
-        }
-        setRealVh();
-        window.addEventListener('resize', setRealVh);
-        window.addEventListener('orientationchange', function() { setTimeout(setRealVh, 300); });
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Aleksander Karshikoff | Portfolio 2026</title>
     <style>
@@ -31,8 +22,6 @@
 
         .slide-container {
             height: 100vh;
-            height: 100dvh;
-            height: calc(var(--real-vh, 1vh) * 100);
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
@@ -46,8 +35,6 @@
 
         .slide {
             height: 100vh;
-            height: 100dvh;
-            height: calc(var(--real-vh, 1vh) * 100);
             width: 100%;
             scroll-snap-align: start;
             scroll-snap-stop: always;
@@ -64,9 +51,7 @@
             width: 100vw;
             height: calc(100vw * 9 / 16);
             max-height: 100vh;
-            max-height: 100dvh;
             max-width: calc(100vh * 16 / 9);
-            max-width: calc(100dvh * 16 / 9);
         }
 
         .slide-bg {
@@ -136,7 +121,6 @@
         /* Back slide */
         .back-slide {
             height: 100vh;
-            height: 100dvh;
             width: 100%;
             scroll-snap-align: start;
             scroll-snap-stop: always;
@@ -189,7 +173,6 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            height: 100dvh;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -223,25 +206,6 @@
             opacity: 0.8;
             max-width: 280px;
             line-height: 1.5;
-            margin-bottom: 2rem;
-        }
-
-        .rotation-overlay-dismiss {
-            font-size: 12px;
-            color: rgba(255,255,255,0.45);
-            text-decoration: none;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            background: none;
-            padding: 0.5rem 1rem;
-            transition: color 0.3s;
-        }
-
-        .rotation-overlay-dismiss:hover {
-            color: rgba(255,255,255,0.75);
         }
 
         @keyframes rotatePhone {
@@ -263,28 +227,6 @@
             .dot-nav {
                 display: none;
             }
-
-            /* On mobile, anchor info boxes to very bottom of slide, compact style */
-            .slide-project-info {
-                top: auto !important;
-                bottom: 3% !important;
-                pointer-events: auto !important;
-            }
-
-            /* Hide the long description text on mobile — too small to read */
-            .slide-project-info > div:last-child {
-                display: none !important;
-            }
-
-            /* Scale up year, title, and play icon for mobile tap targets */
-            .slide-project-info > div[style*="font-size:1.2vw"] {
-                font-size: 3vw !important;
-            }
-            .slide-project-info .play-icon {
-                width: 3vw !important;
-                height: 3vw !important;
-                margin-bottom: 0.5vw !important;
-            }
         }
 
         @media (max-width: 1024px) and (orientation: portrait) {
@@ -296,7 +238,7 @@
 </head>
 
 <body>
-    <div class="rotation-overlay" id="rotationOverlay">
+    <div class="rotation-overlay">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
             <rect x="5" y="2" width="14" height="20" rx="2" stroke="white" stroke-width="1.5"/>
             <circle cx="12" cy="19" r="0.75" fill="white"/>
@@ -304,7 +246,6 @@
         </svg>
         <h2>Rotate your device</h2>
         <p>Please rotate your device to landscape for the best portfolio experience.</p>
-        <button class="rotation-overlay-dismiss" id="dismissOverlay">Continue in portrait</button>
     </div>
 
     <div class="slide-container" id="slideContainer">
@@ -638,7 +579,7 @@
             <div class="slide-content">
                 <img src="assets/page_7.jpg" class="slide-bg" alt="Slide 7">
                 <!-- Project 1: Martha & Niki (2015) -->
-                <div class="slide-project-info"
+                <div
                     style="position:absolute; left:0%; top:calc(72% - 30px); width:31.33%; text-align:left; color:#fff; font-family: Arial, sans-serif; z-index:11; pointer-events:none;">
                     <a href="https://youtu.be/5lU6mHVUVXU?si=mMGH2AH_JaYKS1AA" target="_blank" class="play-icon"
                         style="display:inline-block; width:1.461vw; height:1.461vw; pointer-events:auto; opacity:0.7; transition:opacity 0.3s; margin-bottom: calc(0.5vw - 10px);">
@@ -658,7 +599,7 @@
                 </div>
 
                 <!-- Project 2: Beyond Dreams (2017) -->
-                <div class="slide-project-info"
+                <div
                     style="position:absolute; left:33.38%; top:calc(72% - 30px); width:31.33%; text-align:left; color:#fff; font-family: Arial, sans-serif; z-index:11; pointer-events:none;">
                     <a href="https://youtu.be/OP1vfgB4ZcE?si=--g8kRr_cGr_gqP6" target="_blank" class="play-icon"
                         style="display:inline-block; width:1.461vw; height:1.461vw; pointer-events:auto; opacity:0.7; transition:opacity 0.3s; margin-bottom: calc(0.5vw - 10px);">
@@ -678,7 +619,7 @@
                 </div>
 
                 <!-- Project 3: Hold Me Down (2017) -->
-                <div class="slide-project-info"
+                <div
                     style="position:absolute; left:67.13%; top:calc(72% - 30px); width:calc(100% - 67.13% - 2rem); text-align:left; color:#fff; font-family: Arial, sans-serif; z-index:11; pointer-events:none;">
                     <a href="https://www.imdb.com/video/vi2272114969/?ref_=tt_vids_vi_1" target="_blank"
                         class="play-icon"
@@ -703,7 +644,7 @@
             <div class="slide-content">
                 <img src="assets/page_8.jpg" class="slide-bg" alt="Slide 8">
                 <!-- Project 1: The Hypnotist (2012) -->
-                <div class="slide-project-info"
+                <div
                     style="position:absolute; left:0%; top:calc(72% - 190px); width:23%; text-align:left; color:#fff; font-family: Arial, sans-serif; z-index:11; pointer-events:none;">
                     <a href="https://www.youtube.com/watch?v=4vGgAk2NDO8&ab_channel=%C3%85saNorberg" target="_blank"
                         class="play-icon"
@@ -726,7 +667,7 @@
                 </div>
 
                 <!-- Project 2: The Crown Jewels (2011) -->
-                <div class="slide-project-info"
+                <div
                     style="position:absolute; left:25%; top:calc(72% - 190px); width:23%; text-align:left; color:#fff; font-family: Arial, sans-serif; z-index:11; pointer-events:none;">
                     <a href="https://www.youtube.com/watch?v=CeYCfuCDwcA&ab_channel=FilmlanceInternationalAB"
                         target="_blank" class="play-icon"
@@ -748,7 +689,7 @@
                 </div>
 
                 <!-- Project 3: Beyond (2010) -->
-                <div class="slide-project-info"
+                <div
                     style="position:absolute; left:50%; top:calc(72% - 190px); width:23%; text-align:left; color:#fff; font-family: Arial, sans-serif; z-index:11; pointer-events:none;">
                     <a href="https://www.youtube.com/watch?v=RIvz3m0gpWc&ab_channel=NordiskFilmSverige" target="_blank"
                         class="play-icon"
@@ -770,7 +711,7 @@
                 </div>
 
                 <!-- Project 4: The Circle (2013) -->
-                <div class="slide-project-info"
+                <div
                     style="position:absolute; left:75%; top:calc(72% - 190px); width:23%; text-align:left; color:#fff; font-family: Arial, sans-serif; z-index:11; pointer-events:none;">
                     <a href="https://www.youtube.com/watch?v=bCt4oXeWGjw&ab_channel=MovieZine" target="_blank"
                         class="play-icon"
@@ -874,29 +815,6 @@
 
         </ul>
     </nav>
-    <script>
-        (function () {
-            var overlay = document.getElementById('rotationOverlay');
-            var btn = document.getElementById('dismissOverlay');
-            var dismissed = false;
-
-            btn.addEventListener('click', function () {
-                dismissed = true;
-                overlay.style.display = 'none';
-            });
-
-            // Re-show only if user rotates back to portrait AND hasn't dismissed
-            window.addEventListener('orientationchange', function () {
-                setTimeout(function () {
-                    if (!dismissed && window.innerWidth < 1024 && window.innerHeight > window.innerWidth) {
-                        overlay.style.display = 'flex';
-                    } else {
-                        overlay.style.display = 'none';
-                    }
-                }, 300);
-            });
-        })();
-    </script>
     <script src="script.js"></script>
 </body>
 
