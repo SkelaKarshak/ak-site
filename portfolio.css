@@ -31,43 +31,16 @@
         }
 
         /* Slide CSS Grid Layout */
-        
         .slide {
             height: 100vh;
-            width: 100vw;
+            width: 100%;
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 50vh 50vh;
             background-color: #000;
         }
-
-        .slide-content-wrapper {
-            container-type: size;
-            width: 100vw;
-            height: 56.25cqw;
-            max-height: 100vh;
-            max-width: 177.78vh;
-            position: relative;
-            background-color: #000;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .slide-content-wrapper > .quadrant {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-        }
-        
-        /* Position the quadrants explicitly since grid is trickier with wrapper */
-        .slide-content-wrapper > .quadrant:nth-child(1) { top: 0; left: 0; }
-        .slide-content-wrapper > .quadrant:nth-child(2) { top: 0; left: 50%; }
-        .slide-content-wrapper > .quadrant:nth-child(3) { top: 50%; left: 0; }
-        .slide-content-wrapper > .quadrant:nth-child(4) { top: 50%; left: 50%; }
-
 
         .quadrant {
             position: relative;
@@ -104,14 +77,14 @@
         }
 
         .logo {
-            width: 8.4cqw;
+            width: 8.4vw;
             max-width: 120px;
             height: auto;
             margin-bottom: 2rem;
         }
 
         .text-content p {
-            font-size: 0.85cqw;
+            font-size: 0.85vw;
             line-height: 1.6;
             opacity: 0.9;
             margin-bottom: 1.5rem;
@@ -137,15 +110,15 @@
         .project-info.bottom-right { bottom: 0; right: 0; align-items: flex-end; text-align: right; }
 
         /* Typography & Icons */
-        .year { font-size: 1.2cqw; font-weight: 700; }
-        .title { font-size: 1.2cqw; font-weight: 800; letter-spacing: -0.02em; }
+        .year { font-size: 1.2vw; font-weight: 700; }
+        .title { font-size: 1.2vw; font-weight: 800; letter-spacing: -0.02em; }
 
         .play-icon {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 0.9cqw;
-            height: 0.9cqw;
+            width: 0.9vw;
+            height: 0.9vw;
             opacity: 0.7;
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: auto;
@@ -201,7 +174,7 @@
         }
 
         .slide-footer {
-            height: 25cqh;
+            height: 25vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -212,11 +185,11 @@
         }
 
         .slide-footer p {
-            font-size: 0.85cqw;
+            font-size: 0.85vw;
             line-height: 1.6;
             opacity: 0.9;
             margin-bottom: 1.5rem;
-            max-width: 70cqw;
+            max-width: 70vw;
         }
 
         .slide-footer .logo {
@@ -243,7 +216,7 @@
         }
 
         .hero-text {
-            height: 30cqh;
+            height: 30vh;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -253,11 +226,11 @@
         }
 
         .hero-text p {
-            font-size: 0.85cqw;
+            font-size: 0.85vw;
             line-height: 1.6;
             opacity: 0.9;
             margin: 0;
-            max-width: 80cqw;
+            max-width: 80vw;
         }
 
         /* Gallery Layouts (Slides 7 & 8) */
@@ -332,13 +305,13 @@
         .s9-grid-area {
             display: grid;
             grid-template-columns: max-content max-content max-content;
-            grid-template-rows: 50cqh 50cqh;
+            grid-template-rows: 50vh 50vh;
             height: 100vh;
             flex-shrink: 0;
         }
 
         .s9-image-wrapper {
-            height: 50cqh;
+            height: 50vh;
             position: relative;
             overflow: hidden;
             display: block;
@@ -359,8 +332,8 @@
 
         .s9-play-icon {
             position: absolute;
-            top: 0.6cqw;
-            right: 0.6cqw;
+            top: 0.6vw;
+            right: 0.6vw;
             margin: 0;
             color: #fff;
         }
@@ -377,7 +350,7 @@
         }
 
         .s9-text-area p {
-            font-size: 0.85cqw;
+            font-size: 0.85vw;
             line-height: 1.6;
             opacity: 0.9;
             color: #fff;
@@ -403,20 +376,20 @@
         }
 
         .thank-you-content h1 {
-            font-size: 5cqw;
+            font-size: 5vw;
             font-weight: 800;
-            margin: 0 0 2cqw 0;
+            margin: 0 0 2vw 0;
             letter-spacing: -0.02em;
         }
 
         .thank-you-details {
-            font-size: 0.85cqw;
+            font-size: 0.85vw;
             font-weight: 400;
             opacity: 0.9;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.8cqw;
+            gap: 0.8vw;
         }
 
         .thank-you-details a {
@@ -439,7 +412,7 @@
             bottom: calc(27% - 50px);
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.85cqw;
+            font-size: 0.85vw;
             color: #ffffff;
             text-decoration: none;
             letter-spacing: 0.2em;
