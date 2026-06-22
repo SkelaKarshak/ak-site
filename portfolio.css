@@ -445,124 +445,61 @@
         }
 
         /* Mobile / Responsive Adjustments */
-        @media (max-width: 1024px) {
-            .slide {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 50vh 50vh 50vh;
-                height: auto;
-            }
+        .rotation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
 
-            .quadrant { height: 50vh; }
-            .quadrant.text-quadrant { height: auto; padding: 3rem 1.5rem; }
-            
-            .text-content { padding: 0; }
-            .text-content p { font-size: 15px; }
-            .logo { width: 80px; margin-bottom: 1.5rem; }
+        .rotation-overlay svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 2rem;
+            animation: rotatePhone 2.5s ease-in-out infinite;
+        }
 
-            .year, .title { font-size: 18px; }
-            .play-icon { width: 16px; height: 16px; }
-            .project-info { padding: 1.5rem; }
+        .rotation-overlay h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
 
-            .slide-3-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto;
-            }
-            .grid-item {
-                height: 25vh;
-            }
-            .slide-footer {
-                height: auto;
-                padding: 3rem 1.5rem;
-            }
-            .slide-footer p {
-                font-size: 15px;
-                max-width: 100%;
-            }
-            .slide-col {
-                height: auto;
-            }
-            
-            .hero-text {
-                height: auto;
-                padding: 3rem 1.5rem;
-            }
-            .hero-text p {
-                font-size: 15px;
-                max-width: 100%;
-            }
-            .hero-image {
-                height: 50vh;
-            }
+        .rotation-overlay p {
+            font-size: 14px;
+            opacity: 0.8;
+            max-width: 280px;
+            line-height: 1.5;
+        }
 
-            .gallery-container {
-                height: auto;
-                padding: 4rem 0;
+        @keyframes rotatePhone {
+            0%, 10% {
+                transform: rotate(0deg);
             }
-            .gallery-grid-3, .gallery-grid-4 {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                width: 100%;
+            40%, 60% {
+                transform: rotate(-90deg);
             }
-            .gallery-image-wrapper {
-                height: auto;
+            90%, 100% {
+                transform: rotate(0deg);
             }
-            .gallery-image-wrapper img {
-                object-position: center;
-                transform-origin: center;
-            }
-            .gallery-text p {
-                font-size: 15px !important;
-            }
+        }
 
-            .slide-9-container {
-                flex-direction: column;
-                height: auto;
-            }
-            .s9-grid-area {
-                height: auto;
-                width: 100vw;
-            }
-            .s9-row {
-                height: auto;
-                flex-direction: column;
-            }
-            .s9-image-wrapper {
-                width: 100%;
-                height: auto;
-            }
-            .s9-image-wrapper img {
-                width: 100%;
-                height: auto;
-            }
-            .s9-play-icon {
-                top: 0.5rem;
-                right: 0.5rem;
-            }
-            .s9-text-area {
-                padding: 4rem 2rem;
-                text-align: left;
-                align-items: flex-start;
-            }
-            .s9-text-area p {
-                font-size: 15px;
-                max-width: 100%;
-            }
-
-            .thank-you-content h1 {
-                font-size: 10vw;
-            }
-            .thank-you-details {
-                font-size: 15px;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .thank-you-divider {
-                display: none;
-            }
-            .back-btn {
-                font-size: 14px;
-                padding: 1rem 2.5rem;
-                bottom: 10%;
+        @media (max-width: 1024px) and (orientation: portrait) {
+            .rotation-overlay {
+                display: flex;
             }
         }
 
