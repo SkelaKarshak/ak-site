@@ -16,6 +16,10 @@
             overflow: hidden; /* We manage scrolling in the container */
         }
 
+        p {
+            text-align: left;
+        }
+
         /* Snap Scrolling Container */
         .slide-container {
             height: 100vh;
@@ -538,3 +542,29 @@
 /* Utility Classes */
 .icon-dark { color: #000 !important; }
 .ml-0 { margin-left: 0 !important; }
+
+.landscape-restriction {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 2rem;
+}
+
+@media (max-width: 950px) and (max-height: 500px) and (orientation: landscape) {
+    .landscape-restriction {
+        display: flex;
+    }
+    .slide-container, .back-btn {
+        display: none !important;
+    }
+}

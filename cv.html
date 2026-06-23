@@ -345,11 +345,38 @@
                 margin-top: 0.2rem;
             }
         }
+        .landscape-restriction {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 2rem;
+        }
+
+        @media (max-width: 950px) and (max-height: 500px) and (orientation: landscape) {
+            .landscape-restriction {
+                display: flex;
+            }
+            .page, .return-btn {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-
+    <div class="landscape-restriction">
+        <p>Please rotate your device to portrait mode.</p>
+    </div>
 
     <div class="page">
 
