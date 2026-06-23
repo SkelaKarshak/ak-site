@@ -113,20 +113,7 @@
         .year { font-size: 1.2vw; font-weight: 700; }
         .title { font-size: 1.2vw; font-weight: 800; letter-spacing: -0.02em; }
 
-        .play-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 0.9vw;
-            height: 0.9vw;
-            opacity: 0.7;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: auto;
-            margin-bottom: 0.5rem;
-        }
 
-        .play-icon svg { width: 100%; height: 100%; }
-        .play-icon:hover { opacity: 1; transform: scale(1.1); }
 
         /* Slide 3 Layout */
         .slide-col {
@@ -165,13 +152,7 @@
             transform: scale(1.05);
         }
 
-        .grid-item .play-icon {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            z-index: 10;
-            margin-bottom: 0; /* Override any previous margin */
-        }
+
 
         .slide-footer {
             height: 25vh;
@@ -315,7 +296,7 @@
             position: relative;
             overflow: hidden;
             display: block;
-            text-decoration: none; /* since it will be an <a> tag */
+            text-decoration: none;
         }
 
         .s9-image-wrapper img {
@@ -328,14 +309,6 @@
 
         .s9-image-wrapper:hover img {
             transform: scale(1.02);
-        }
-
-        .s9-play-icon {
-            position: absolute;
-            top: 0.6vw;
-            right: 0.6vw;
-            margin: 0;
-            color: #fff;
         }
 
         .s9-text-area {
@@ -445,62 +418,117 @@
         }
 
         /* Mobile / Responsive Adjustments */
-        .rotation-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000;
-            z-index: 9999;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 2rem;
-            box-sizing: border-box;
-        }
-
-        .rotation-overlay svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 2rem;
-            animation: rotatePhone 2.5s ease-in-out infinite;
-        }
-
-        .rotation-overlay h2 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.01em;
-        }
-
-        .rotation-overlay p {
-            font-size: 14px;
-            opacity: 0.8;
-            max-width: 280px;
-            line-height: 1.5;
-        }
-
-        @keyframes rotatePhone {
-            0%, 10% {
-                transform: rotate(0deg);
+        @media (max-width: 768px) {
+            .slide-container {
+                scroll-snap-type: none;
+                overflow-y: auto;
             }
-            40%, 60% {
-                transform: rotate(-90deg);
-            }
-            90%, 100% {
-                transform: rotate(0deg);
-            }
-        }
 
-        @media (max-width: 1024px) and (orientation: portrait) {
-            .rotation-overlay {
+            .slide {
+                height: auto;
                 display: flex;
+                flex-direction: column;
+                scroll-snap-align: none;
             }
+
+            .quadrant {
+                height: 50vh;
+                width: 100%;
+            }
+
+            .quadrant.text-quadrant {
+                height: auto;
+                padding: 4rem 2rem;
+            }
+
+            .text-content p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+
+            .logo {
+                width: 40%;
+                max-width: 150px;
+                margin-bottom: 2rem;
+            }
+
+            .project-info {
+                position: relative;
+                padding: 1.5rem;
+                background: transparent;
+                align-items: flex-start !important;
+                text-align: left !important;
+                margin-top: 0 !important;
+            }
+
+            .project-info.top-right,
+            .project-info.bottom-left,
+            .project-info.bottom-right {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: auto;
+                width: 100%;
+                background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+                padding-top: 3rem;
+            }
+
+            .year { font-size: 1.2rem; }
+            .title { font-size: 1.5rem; }
+
+            .slide-col { height: auto; }
+
+            .slide-3-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+                display: grid;
+            }
+
+            .grid-item { height: 25vh; }
+
+            .slide-footer {
+                height: auto;
+                padding: 3rem 2rem;
+            }
+
+            .slide-footer p { font-size: 1.1rem; max-width: 100%; }
+
+            .hero-image { height: 50vh; }
+            .hero-text {
+                height: auto;
+                padding: 3rem 2rem;
+            }
+            .hero-text p { font-size: 1.1rem; max-width: 100%; margin-top: 1rem; }
+
+            .gallery-container { padding: 2rem 0; height: auto; }
+            .gallery-grid-3, .gallery-grid-4 {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .gallery-project { margin-bottom: 0; }
+            .gallery-image-wrapper { margin-bottom: 1rem; }
+            .gallery-text { padding: 0 1.5rem; }
+            .gallery-text p { font-size: 1rem !important; }
+
+            .slide-9-container { flex-direction: column; height: auto; }
+            .s9-grid-area {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+                height: auto;
+            }
+            .s9-image-wrapper { height: 25vh; }
+            .s9-text-area { padding: 3rem 2rem; text-align: left; }
+            .s9-text-area p { font-size: 1.1rem; max-width: 100%; }
+
+            .thank-you-content h1 { font-size: 3rem; margin-bottom: 2rem; }
+            .thank-you-details {
+                flex-direction: column;
+                gap: 1rem;
+                font-size: 1.2rem;
+            }
+            .thank-you-divider { display: none; }
+            .back-btn { font-size: 1rem; bottom: 10%; }
         }
 
 /* Utility Classes */
