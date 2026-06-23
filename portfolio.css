@@ -438,7 +438,11 @@
 
             .quadrant.text-quadrant {
                 height: auto;
-                padding: 4rem 2rem;
+                padding: 4rem 1rem;
+            }
+
+            .text-content {
+                padding: 0;
             }
 
             .text-content p {
@@ -453,7 +457,7 @@
             }
 
             .project-info {
-                position: relative;
+                position: absolute;
                 padding: 1.5rem;
                 background: transparent;
                 align-items: flex-start !important;
@@ -488,7 +492,7 @@
 
             .slide-footer {
                 height: auto;
-                padding: 3rem 2rem;
+                padding: 3rem 1rem;
             }
 
             .slide-footer p { font-size: 1.1rem; max-width: 100%; }
@@ -496,7 +500,7 @@
             .hero-image { height: 50vh; }
             .hero-text {
                 height: auto;
-                padding: 3rem 2rem;
+                padding: 3rem 1rem;
             }
             .hero-text p { font-size: 1.1rem; max-width: 100%; margin-top: 1rem; }
 
@@ -508,7 +512,7 @@
 
             .gallery-project { margin-bottom: 0; }
             .gallery-image-wrapper { margin-bottom: 1rem; }
-            .gallery-text { padding: 0 1.5rem; }
+            .gallery-text { padding: 0 1rem; }
             .gallery-text p { font-size: 1rem !important; }
 
             .slide-9-container { flex-direction: column; height: auto; }
@@ -518,7 +522,7 @@
                 height: auto;
             }
             .s9-image-wrapper { height: 25vh; }
-            .s9-text-area { padding: 3rem 2rem; text-align: left; }
+            .s9-text-area { padding: 3rem 1rem; text-align: left; }
             .s9-text-area p { font-size: 1.1rem; max-width: 100%; }
 
             .thank-you-content h1 { font-size: 3rem; margin-bottom: 2rem; }
