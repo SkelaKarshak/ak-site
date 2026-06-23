@@ -442,6 +442,7 @@
 
             .quadrant.text-quadrant {
                 height: auto;
+                aspect-ratio: auto;
                 padding: 4rem 1rem;
             }
 
