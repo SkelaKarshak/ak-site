@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <style>
+        :root {
+            --stage-scale: 1;
+        }
+
         html {
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
@@ -89,8 +93,10 @@
         }
 
         @media (max-height: 600px) {
+            :root {
+                --stage-scale: 0.55;
+            }
             .stage {
-                transform: scale(0.55);
                 margin-top: 50px;
             }
 
@@ -101,8 +107,10 @@
         }
 
         @media (max-width: 768px) {
+            :root {
+                --stage-scale: 0.45;
+            }
             .stage {
-                transform: scale(0.45);
                 margin-top: 80px;
             }
 
@@ -132,6 +140,7 @@
             height: 65px;
             margin-top: 140px;
             flex-shrink: 0;
+            transform: scale(var(--stage-scale));
         }
 
         .logo-wrapper {
@@ -308,8 +317,8 @@
 
             let currentCapDelta = 0;
             
-            const stage = document.querySelector('.stage');
-            const scale = stage.getBoundingClientRect().width / stage.offsetWidth || 1;
+            const scaleStr = getComputedStyle(document.documentElement).getPropertyValue('--stage-scale').trim();
+            const scale = parseFloat(scaleStr) || 1;
 
             tokens.forEach((token, i) => {
                 if (token.classList.contains('cap')) {
