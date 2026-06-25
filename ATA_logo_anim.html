@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Across The Alley - Definitive High-Performance Lockup</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 54px;
+            font-weight: 300;
+            perspective: 1000px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 800px;
+            height: 450px;
+        }
+        .logo-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scaleY(0.85); 
+            transform-style: preserve-3d;
+        }
+        .logo-container {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 6px;
+            opacity: 0; 
+            will-change: opacity;
+        }
+        /* All tokens are isolated onto hardware layers for subpixel fluid rendering */
+        .cap, .lower, .space {
+            display: inline-block;
+            white-space: nowrap;
+            will-change: transform, opacity;
+        }
+        .lower, .space {
+            transform-origin: left center; /* Matches native right-to-left textual collapse */
+        }
+        .logo-clone {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: -13.5px;
+            opacity: 0; 
+            transform-origin: center calc(50% + 20.5px); 
+            will-change: transform, opacity;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+<div class="stage">
+    <div class="logo-wrapper">
+        <!-- Fragmented Token Architecture to map structural compression paths -->
+        <div class="logo-container" id="logo-main">
+            <span class="cap" id="tok-A1">A</span><span class="lower" id="tok-cross">cross</span><span class="space" id="tok-s1">&nbsp;</span>
+            <span class="cap" id="tok-T">T</span><span class="lower" id="tok-he">he</span><span class="space" id="tok-s2">&nbsp;</span>
+            <span class="cap" id="tok-A2">A</span><span class="lower" id="tok-lley">lley</span>
+        </div>
+
+        <!-- The duplicate copy that flips -->
+        <div class="logo-clone" id="logo-mirrored">
+            <span class="cap">A</span>
+            <span class="cap">T</span>
+            <span class="cap">A</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Wait for browser font-hinting configurations to stabilize
+    document.fonts.ready.then(() => {
+        
+        const tokenIds = ['A1', 'cross', 's1', 'T', 'he', 's2', 'A2', 'lley'];
+        const tokens = tokenIds.map(id => document.getElementById(`tok-${id}`));
+
+        // Separate references for batched GSAP calls
+        const caps = [];
+        const collapsibles = [];
+        const capDeltas = [];
+        const collapsibleDeltas = [];
+
+        // 1. Capture State A (Natural Expanded Positions)
+        const rectsA = tokens.map(el => el.getBoundingClientRect());
+
+        // 2. Force State B layout configuration instantly behind the scenes
+        // Using display: none ensures the flex container calculates exactly like the 3-element target
+        gsap.set(".lower, .space", { display: "none" });
+        gsap.set("#logo-main", { letterSpacing: "-13.5px" });
+
+        // Capture State B (Natural Compressed Positions)
+        const rectsB = tokens.map(el => {
+            // collapsibles are display:none, so their rect is 0,0,0,0
+            // but we only need rectsB for caps to perfectly match the clone!
+            return el.getBoundingClientRect();
+        });
+
+        // 3. Roll back layout configurations instantly
+        gsap.set(".lower, .space", { clearProps: "display" });
+        gsap.set("#logo-main", { clearProps: "letterSpacing" });
+
+        // 4. Calculate absolute delta translation values
+        let currentCapDelta = 0;
+        tokens.forEach((token, i) => {
+            if (token.classList.contains('cap')) {
+                currentCapDelta = rectsB[i].left - rectsA[i].left;
+                caps.push(token);
+                capDeltas.push(currentCapDelta);
+            } else {
+                // Collapsibles slide perfectly alongside their preceding cap
+                collapsibles.push(token);
+                collapsibleDeltas.push(currentCapDelta);
+            }
+        });
+
+        // Master Animation Timeline
+        const tl = gsap.timeline();
+
+        // Intro: Smooth 1.5s fade-in of full text
+        tl.to("#logo-main", {
+            opacity: 1,
+            duration: 1.5, 
+            ease: "power1.inOut"
+        })
+          
+        // Organic GPU Compression
+        .add("compress", "+=0.1");
+        
+        // Capitals: single tween with functional x values
+        if (caps.length) {
+            tl.to(caps, {
+                x: i => capDeltas[i],
+                duration: 1.4,
+                ease: "power2.inOut"
+            }, "compress");
+        }
+
+        // Collapsibles: single tween with functional x values
+        if (collapsibles.length) {
+            tl.to(collapsibles, {
+                x: i => collapsibleDeltas[i],
+                scaleX: 0,
+                opacity: 0,
+                duration: 1.4,
+                ease: "power2.inOut"
+            }, "compress");
+        }
+
+        // 3D Flip Execution Sequence
+        tl.set("#logo-mirrored", { 
+            rotateX: 0
+        })
+        .to("#logo-mirrored", {
+            rotateX: 180, 
+            duration: 1.2,
+            ease: "power2.inOut" 
+        }, "+=0.1")
+        .to("#logo-mirrored", {
+            opacity: 1,
+            duration: 1.0, 
+            ease: "power1.inOut"
+        }, "<");
+    });
+</script>
+
+</body>
+</html>

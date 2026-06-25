@@ -4,106 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Aleksander Karshikoff</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
+    <title>Across The Alley - Flawless Hybrid SVG Animation</title>
     <style>
-        html {
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-        }
-
         body {
             margin: 0;
-            padding: 0;
-            background-color: #000000;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            height: 100vh;
+            background-color: #000;
+            color: #fff;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
             overflow: hidden;
-            font-weight: 700;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 54px;
+            font-weight: 300;
+            perspective: 1000px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3vh;
-            opacity: 0;
-            transform: translateY(20px);
-            will-change: transform, opacity;
-            margin-top: auto;
-            margin-bottom: auto;
-            position: relative;
-            top: -170px;
-        }
-
-        .name-title {
-            font-size: 1.262vw;
-            font-weight: 400;
-            letter-spacing: 0.7em;
-            color: #ffffff;
-            text-transform: uppercase;
-            margin-bottom: 2vh;
-        }
-
-        .choice-btn {
-            position: relative;
-            font-size: 3.2vw;
-            color: #ffffff;
-            text-decoration: none;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            padding: 0.5rem 2rem;
-            transition: color 0.4s ease, transform 0.4s ease;
-            font-weight: 700;
-        }
-
-        .choice-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .choice-btn::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: 0;
-            left: 50%;
-            background-color: #ffffff;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-        }
-
-        .choice-btn:hover::after {
-            width: 80%;
-        }
-
-
-
-        @media (max-width: 768px) {
-            .name-title {
-                font-size: 13px;
-                letter-spacing: 0.35em;
-                margin-bottom: 3vh;
-                text-align: center;
-            }
-
-            .choice-btn {
-                font-size: 24px;
-            }
-        }
-
-        /* --- LOGO ANIMATION STYLES --- */
         .stage {
             position: relative;
             display: flex;
@@ -111,8 +30,7 @@
             justify-content: center;
             width: 800px;
             height: 65px;
-            margin-top: 140px;
-            flex-shrink: 0;
+            margin-top: 40px;
         }
 
         .logo-wrapper {
@@ -126,6 +44,7 @@
             transform-style: preserve-3d;
         }
 
+        /* Force explicit height to guarantee perfect vertical alignment between main and clone */
         .logo-container,
         .logo-clone {
             position: absolute;
@@ -139,9 +58,7 @@
 
         .logo-container {
             letter-spacing: 6px;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 54px;
-            font-weight: 300;
+            /* Applies to native text */
         }
 
         .cap,
@@ -153,6 +70,7 @@
             will-change: transform, opacity;
         }
 
+        /* Replaces the letter-spacing that SVGs ignore */
         .cap {
             margin-right: 6px;
         }
@@ -173,13 +91,14 @@
             overflow: visible;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
 <body>
 
-    <!-- LOGO ANIMATION -->
     <div class="stage">
         <div class="logo-wrapper">
+            <!-- Main Logo: SVG Caps + Native HTML Lowercase -->
             <div class="logo-container" id="logo-main">
                 <span class="cap" id="tok-A1">
                     <svg class="geom" viewBox="0 0 30 40">
@@ -211,6 +130,7 @@
                 </span><span class="lower" id="tok-lley">lley</span>
             </div>
 
+            <!-- The duplicate copy that flips (Pure SVG Lockup) -->
             <div class="logo-clone" id="logo-mirrored">
                 <span class="cap" style="margin-right: -10px;">
                     <svg class="geom" viewBox="0 0 30 40">
@@ -242,28 +162,28 @@
         </div>
     </div>
 
-    <!-- MAIN PAGE CONTENT -->
-    <div class="container">
-        <p class="name-title">Aleksander Karshikoff</p>
-        <a href="portfolio.html" class="choice-btn">Portfolio</a>
-        <a href="cv.html" class="choice-btn">CV</a>
-    </div>
-
-    <!-- LOGO ANIMATION SCRIPT -->
     <script>
+        // ==========================================
+        // [ TIMING CONFIGURATION ]
+        // Tweak any of these values to adjust the flow
+        // ==========================================
         const TIMINGS = {
-            introFadeDuration: 0,
-            introToCompressDelay: 0.1,
-            compressDuration: 1.4,
-            compressToFlipDelay: -1.0,
-            compressToContentDelay: 0.9,
-            contentFadeDuration: 1.5,
-            contentSlideDuration: 0.45,
-            flipDuration: 1.2,
-            flipFadeDuration: 2.7,
-            eraseLineDuration: 0.3,
-            eraseStaggerAmount: 1.1,
-            eraseEndPadding: 0.5
+            // --- Phase 1: Intro ---
+            introFadeDuration: 1.5,      // How long the initial "Across The Alley" takes to fade in
+            introToCompressDelay: 0.1,   // Pause before the compression begins
+
+            // --- Phase 2: Compression ---
+            compressDuration: 1.4,       // How long it takes the letters to slide together into the 70px lockup
+            compressToFlipDelay: -1.0,   // Negative value triggers the flip 1.0s BEFORE compression ends!
+
+            // --- Phase 3: 3D Flip ---
+            flipDuration: 1.2,           // How fast the bottom geometric lockup physically rotates 180 degrees
+            flipFadeDuration: 2.7,       // How fast the flipped geometric lockup fades into visibility
+
+            // --- Phase 4: Deconstruction (on click) ---
+            eraseLineDuration: 0.3,      // Time it takes to erase a single individual geometric line
+            eraseStaggerAmount: 1.1,     // Total time window over which the 16 random line erasures are spread out
+            eraseEndPadding: 0.5         // Extra padding time added to the timeline after the final line vanishes
         };
 
         document.fonts.ready.then(() => {
@@ -275,17 +195,23 @@
             const capDeltas = [];
             const collapsibleDeltas = [];
 
+            // 1. Capture State A (Natural Expanded Positions)
             const rectsA = tokens.map(el => el.getBoundingClientRect());
 
+            // 2. Force State B layout configuration instantly behind the scenes
             gsap.set(".lower, .space", { display: "none" });
+            // Use -10px margin on inner caps to perfectly overlap the 30px SVGs into the 70px geometric target lockup
             gsap.set("#tok-A1, #tok-T", { marginRight: "-10px" });
             gsap.set("#tok-A2", { marginRight: "0px" });
 
+            // Capture State B (Natural Compressed Positions)
             const rectsB = tokens.map(el => el.getBoundingClientRect());
 
+            // 3. Roll back layout configurations instantly
             gsap.set(".lower, .space", { clearProps: "display" });
             gsap.set("#tok-A1, #tok-T, #tok-A2", { clearProps: "marginRight" });
 
+            // 4. Calculate absolute delta translation values
             let currentCapDelta = 0;
             tokens.forEach((token, i) => {
                 if (token.classList.contains('cap')) {
@@ -298,15 +224,20 @@
                 }
             });
 
+            // Master Animation Timeline
             const tl = gsap.timeline();
 
+            // Intro: Smooth fade-in
             tl.to("#logo-main", {
                 opacity: 1,
                 duration: TIMINGS.introFadeDuration,
                 ease: "power1.inOut"
             })
+
+                // Organic Compression Phase
                 .add("compress", `+=${TIMINGS.introToCompressDelay}`);
 
+            // Capitals: single tween with functional x values
             if (caps.length) {
                 tl.to(caps, {
                     x: i => capDeltas[i],
@@ -315,17 +246,7 @@
                 }, "compress");
             }
 
-            tl.to(".container", {
-                opacity: 1,
-                duration: TIMINGS.contentFadeDuration,
-                ease: "power1.inOut"
-            }, `compress+=${TIMINGS.compressToContentDelay}`)
-                .to(".container", {
-                    y: 0,
-                    duration: TIMINGS.contentSlideDuration,
-                    ease: "power2.out"
-                }, `compress+=${TIMINGS.compressToContentDelay}`);
-
+            // Collapsibles: shrink and fade out alongside caps
             if (collapsibles.length) {
                 tl.to(collapsibles, {
                     x: i => collapsibleDeltas[i],
@@ -336,6 +257,7 @@
                 }, "compress");
             }
 
+            // 3D Flip Execution Sequence
             tl.to("#logo-mirrored", {
                 rotateX: 180,
                 duration: TIMINGS.flipDuration,
@@ -355,6 +277,7 @@
         function initDeconstruction() {
             const lines = gsap.utils.toArray('line');
 
+            // Setup paths for hardware-accelerated drawing/erasing animation
             lines.forEach(line => {
                 const length = line.getTotalLength();
                 gsap.set(line, {
@@ -366,6 +289,7 @@
 
             const tl = gsap.timeline();
 
+            // 16-line random erasure
             tl.to(lines, {
                 strokeDashoffset: (i, el) => el.getTotalLength() + 2,
                 duration: TIMINGS.eraseLineDuration,
@@ -376,6 +300,7 @@
                 ease: "power2.inOut"
             });
 
+            // Ensure timeline stops cleanly after the final line vanishes
             tl.set({}, {}, `+=${TIMINGS.eraseEndPadding}`);
         }
 

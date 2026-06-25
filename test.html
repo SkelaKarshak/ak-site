@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<style>
+.container { display: flex; }
+.item { width: 0; }
+</style>
+<div class="container" id="c">
+    <span class="item" id="i1">A</span>
+    <span class="item" id="i2">cross</span>
+</div>
+<script>
+    console.log(document.getElementById('i1').getBoundingClientRect().width);
+    console.log(document.getElementById('i2').getBoundingClientRect().width);
+</script>
+</html>
