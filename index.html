@@ -307,9 +307,13 @@
             gsap.set("#tok-A1, #tok-T, #tok-A2", { clearProps: "marginRight" });
 
             let currentCapDelta = 0;
+            
+            const stage = document.querySelector('.stage');
+            const scale = stage.getBoundingClientRect().width / stage.offsetWidth || 1;
+
             tokens.forEach((token, i) => {
                 if (token.classList.contains('cap')) {
-                    currentCapDelta = rectsB[i].left - rectsA[i].left;
+                    currentCapDelta = (rectsB[i].left - rectsA[i].left) / scale;
                     caps.push(token);
                     capDeltas.push(currentCapDelta);
                 } else {
