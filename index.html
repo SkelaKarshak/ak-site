@@ -88,9 +88,28 @@
             transform: translateX(-50%) scaleX(1);
         }
 
+        @media (max-height: 600px) {
+            .stage {
+                transform: scale(0.55);
+                margin-top: 50px;
+            }
 
+            .container {
+                top: -10px;
+                gap: 2vh;
+            }
+        }
 
         @media (max-width: 768px) {
+            .stage {
+                transform: scale(0.45);
+                margin-top: 80px;
+            }
+
+            .container {
+                top: -30px;
+            }
+
             .name-title {
                 font-size: 13px;
                 letter-spacing: 0.35em;
