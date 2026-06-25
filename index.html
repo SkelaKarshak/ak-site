@@ -7,7 +7,7 @@
 
     <title>Aleksander Karshikoff</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <style>
         html {
@@ -74,18 +74,18 @@
         .choice-btn::after {
             content: '';
             position: absolute;
-            width: 0;
+            width: 80%;
             height: 1px;
             bottom: 0;
             left: 50%;
             background-color: #ffffff;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transform: translateX(-50%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform: translateX(-50%) scaleX(0);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
         .choice-btn:hover::after {
-            width: 80%;
+            transform: translateX(-50%) scaleX(1);
         }
 
 
@@ -250,6 +250,7 @@
     </div>
 
     <!-- LOGO ANIMATION SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         const TIMINGS = {
             introFadeDuration: 0,
@@ -257,7 +258,7 @@
             compressDuration: 1.4,
             compressToFlipDelay: -1.0,
             compressToContentDelay: 0.9,
-            contentFadeDuration: 1.5,
+            contentFadeDuration: .5,
             contentSlideDuration: 0.45,
             flipDuration: 1.2,
             flipFadeDuration: 2.7,
